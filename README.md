@@ -15,6 +15,7 @@ Am dezvoltat un joc captivant 2048 în Python, utilizând Kivy pentru a implemen
     Regulile jocului
 </h3>
 2048 se joacă pe o grilă de 4×4, care conține piese numerotate ce se mișcă fluid atunci când sunt direcționate cu ajutorul săgeților. De fiecare dată când piesele sunt mutate, o piesă nouă apare aleatoriu într-unul dintre spațiile libere de pe tablă. Piesele se deplasează cât de mult posibil în direcția aleasă, oprindu-se doar atunci când se ciocnesc cu o altă piesă sau ajung la marginea grilei. Dacă două piese cu aceeași valoare se ciocnesc în timpul unei mișcări, acestea se combină într-o singură piesă cu o valoare egală cu suma celor două. Această piesă combinată nu poate fi combinată cu o altă piesă în aceeași mișcare.
+<br> </br>
 <p align="center">
     <img width="300" height="500" src="https://github.com/andreeaa-10/2048-python/blob/main/pictures/img_2.png">
 </p>

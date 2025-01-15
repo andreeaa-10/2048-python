@@ -413,7 +413,7 @@ class Game(Screen):
         self.init_board()
         self.show_popup("Game restarted!")
 
-    def quit_game(self):
+    def quit_game(self, instance=None):
         App.get_running_app().stop()
 
 class ScreenManagement(ScreenManager):
@@ -426,7 +426,7 @@ class Menu(Screen):
         game_screen.load_game()
         self.manager.current = 'game'
 
-    def quit_game(self):
+    def quit_game(self, instance=None):
         App.get_running_app().stop()
 
 class GameResume(Screen):

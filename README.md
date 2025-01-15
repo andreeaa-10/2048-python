@@ -20,4 +20,4 @@ Am dezvoltat un joc captivant 2048 în Python, utilizând Kivy pentru a implemen
     <img width="300" height="500" src="https://github.com/andreeaa-10/2048-python/blob/main/pictures/img_2.png">
 </p>
 
-Am implementat caracteristici specifice în joc, cum ar fi o funcție de reluare care permite jucătorului să continue de unde a rămas și un sistem de mișcare automată care se activează după o perioadă de inactivitate, selectând cea mai bună mișcare posibilă. Jocul este câștigat atunci când se creează o piesă cu valoarea 2048. Pierzi atunci când nu mai sunt posibile mișcări valide, adică atunci când nicio piesă nu poate fi combinată sau mutată.
+Jocul este câștigat atunci când se creează o piesă cu valoarea 2048. Pierzi atunci când nu mai sunt posibile mișcări valide, adică atunci când nicio piesă nu poate fi combinată sau mutată.

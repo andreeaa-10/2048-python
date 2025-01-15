@@ -7,6 +7,9 @@ I created algorithms to manage game mechanics, including tile merging and scorin
 integrated features such as undo and resume
 functionalities and game-over conditions.
 <br> </br>
+<p align="center">
+    <img width="900" src="https://github.com/andreeaa-10/2048-python/blob/main/pictures/img.png">
+</p>
 <h3>
     Game rules
 </h3>

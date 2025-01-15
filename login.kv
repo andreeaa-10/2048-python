@@ -1,0 +1,250 @@
+ScreenManager:
+    Login:
+        name: 'login'
+    Game:
+        name: '2048'
+    CreateAccount:
+        name: 'create account'
+    Menu:
+        name: 'menu'
+    GameResume:
+        name: 'resume'
+
+<Login>:
+    canvas.before:
+        Color:
+            rgba: 175 / 255., 242 / 255., 213 / 255., 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    FloatLayout:
+        BoxLayout:
+            orientation: 'vertical'
+            padding: [20, 60, 20, 60]
+            spacing: 20
+            size_hint: None, None
+            size: "300dp", "400dp"
+            pos_hint: {"center_x": 0.5, "center_y":0.6}
+
+            TextInput:
+                id: username
+                multiline: False
+                font_size: 32
+                font_name: 'fonts/font_3.ttf'
+                hint_text: 'Username'
+                size_hint: None, None
+                height: "40dp"
+                width: "250dp"
+                pos_hint: {"center_x": 0.5}
+                halign: "center"
+                valign: "middle"
+
+            TextInput:
+                id: password
+                multiline: False
+                password: True
+                font_size: 32
+                font_name: 'fonts/font_3.ttf'
+                hint_text: 'Password'
+                size_hint: None, None
+                height: "40dp"
+                width: "250dp"
+                pos_hint: {"center_x": 0.5}
+                halign: "center"
+                valign: "middle"
+
+            Button:
+                text: "Connect"
+                font_size: 32
+                font_name: 'fonts/font_3.ttf'
+                size_hint: None, None
+                width: "200dp"
+                height: "40dp"
+                pos_hint: {"center_x": 0.5, "center_y": 0.3}
+                on_press: root.do_login(username.text, password.text)
+
+    Label:
+        text: 'Welcome Back!'
+        font_size: 64
+        pos_hint: {"center_x": 0.5, "center_y":0.74}
+        font_name: 'fonts/font_3.ttf'
+        size_hint_y: None
+        height: "100dp"
+
+    Label:
+        text: 'Enter you credentials for login'
+        font_size: 20
+        pos_hint: {"center_x": 0.5, "center_y":0.69}
+        font_name: 'fonts/font_3.ttf'
+        size_hint_y: None
+        height: "100dp"
+
+    Button:
+        text: "Don't have an account? Create one!"
+        font_size: 20
+        font_name: 'fonts/font_3.ttf'
+        size_hint: None, None
+        height: "40dp"
+        width: "300dp"
+        pos_hint: {"center_x": 0.5, "y": 0.05}
+        markup: True
+        on_press: root.go_to_create_account()
+        background_color: 175 / 255., 242 / 255., 213 / 255., 1
+        color: 1, 1, 1, 1
+        opacity: 0
+
+    Label:
+        text: "Don't have an account?[color=0000FF] Create one![/color]"
+        font_size: 20
+        font_name: 'fonts/font_3.ttf'
+        size_hint: None, None
+        height: "40dp"
+        width: "300dp"
+        pos_hint: {"center_x": 0.5, "y": 0.05}
+        markup: True
+
+<CreateAccount>:
+    canvas.before:
+        Color:
+            rgba: 175 / 255., 242 / 255., 213 / 255., 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    FloatLayout:
+        BoxLayout:
+            orientation: 'vertical'
+            padding: [20, 60, 20, 60]
+            spacing: 20
+            size_hint: None, None
+            size: "300dp", "400dp"
+            pos_hint: {"center_x": 0.5, "center_y":0.6}
+
+            TextInput:
+                id: username
+                multiline: False
+                font_size: 32
+                font_name: 'fonts/font_3.ttf'
+                hint_text: 'Username'
+                size_hint: None, None
+                height: "40dp"
+                width: "250dp"
+                pos_hint: {"center_x": 0.5}
+                halign: "center"
+                valign: "middle"
+
+            TextInput:
+                id: password
+                multiline: False
+                password: True
+                font_size: 32
+                font_name: 'fonts/font_3.ttf'
+                hint_text: 'Password'
+                size_hint: None, None
+                height: "40dp"
+                width: "250dp"
+                pos_hint: {"center_x": 0.5}
+                halign: "center"
+                valign: "middle"
+
+            Button:
+                text: "Go to Login"
+                font_size: 32
+                font_name: 'fonts/font_3.ttf'
+                size_hint: None, None
+                width: "200dp"
+                height: "40dp"
+                pos_hint: {"center_x": 0.5, "y": 0.1}
+                on_press: root.manager.current = 'login'
+
+    Label:
+        text: 'Sign Up'
+        font_size: 64
+        font_name: 'fonts/font_3.ttf'
+        size_hint: None, None
+        size: "300dp", "100dp"
+        pos_hint: {"center_x": 0.5, "center_y": 0.74}
+
+    Label:
+        text: 'Create your account'
+        font_size: 20
+        font_name: 'fonts/font_3.ttf'
+        size_hint: None, None
+        size: "300dp", "100dp"
+        pos_hint: {"center_x": 0.5, "center_y": 0.69}
+
+<Game>:
+    canvas.before:
+        Color:
+            rgba: 175 / 255., 242 / 255., 213 / 255., 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    FloatLayout:
+        GridLayout:
+            id: grid
+            cols: 4
+            rows: 4
+            spacing: 5
+            padding: [5, 5, 5, 5]
+            size_hint: None, None
+            size: "320dp", "320dp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+<Menu>:
+    canvas.before:
+        Color:
+            rgba: 175 / 255., 242 / 255., 213 / 255., 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    FloatLayout:
+        BoxLayout:
+            orientation: 'vertical'
+            padding: [20, 60, 20, 60]
+            spacing: 20
+            size_hint: None, None
+            size: "300dp", "400dp"
+            pos_hint: {"center_x": 0.5, "center_y":0.6}
+
+            Button:
+                text: "New Game"
+                font_size: 32
+                font_name: 'fonts/font_3.ttf'
+                size_hint: None, None
+                width: "200dp"
+                height: "40dp"
+                pos_hint: {"center_x": 0.5}
+                on_press: root.manager.current = 'game'
+
+            Button:
+                text: "Resume"
+                font_size: 32
+                font_name: 'fonts/font_3.ttf'
+                size_hint: None, None
+                width: "200dp"
+                height: "40dp"
+                pos_hint: {"center_x": 0.5}
+                on_press: root.manager.current = 'resume'
+
+            Button:
+                text: "Exit"
+                font_size: 32
+                font_name: 'fonts/font_3.ttf'
+                size_hint: None, None
+                width: "200dp"
+                height: "40dp"
+                pos_hint: {"center_x": 0.5}
+                #on_press: root.manager.current = 'login'
+
+        Label:
+            text: '[color=F2AFED]2[/color]0[color=AFCCF2]4[/color][color=B4AFF2]8[/color]'
+            font_size: 74
+            pos_hint: {"center_x": 0.5, "center_y":0.74}
+            font_name: 'fonts/font_3.ttf'
+            size_hint_y: None
+            height: "100dp"
+            markup: True

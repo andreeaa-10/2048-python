@@ -1,11 +1,7 @@
 <h1>
     2048
 </h1>
-I developed an engaging <b>2048 game</b> in python, using <b>kivy</b> to implement a user-friendly graphical interface that enhances
-player experience.
-I created algorithms to manage game mechanics, including tile merging and scoring, ensuring a responsive and challenging gameplay experience and
-integrated features such as undo and resume
-functionalities and game-over conditions.
+Am dezvoltat un joc captivant 2048 în Python, utilizând Kivy pentru a implementa o interfață grafică prietenoasă care îmbunătățește experiența jucătorului. Am creat algoritmi pentru a gestiona mecanica jocului, inclusiv combinarea pieselor și calcularea scorului, asigurând o experiență de joc receptivă și provocatoare. Am integrat funcționalități precum "undo" (revenire), "resume" (reluare) și condiții de terminare a jocului.
 <br> </br>
 <p align="center">
     <img width="300" height="500" src="https://github.com/andreeaa-10/2048-python/blob/main/pictures/img.png">

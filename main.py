@@ -39,19 +39,9 @@ class Login(Screen):
         else:
             print("Username sau parolă greșită!")
 
-    def go_to_create_account(self, username, password):
+    def go_to_create_account(self):
         self.manager.transition = SlideTransition(direction='left')
         self.manager.current = 'create_account'
-        accounts = self.load_accounts()
-
-        if username in accounts:
-            print("Username-ul există deja!")
-        else:
-            accounts[username] = password
-            self.save_accounts(accounts)
-            print("Cont creat cu succes!")
-            self.manager.transition = SlideTransition(direction='right')
-            self.manager.current
 
 class LoginApp(App):
     username = StringProperty(None)
@@ -80,7 +70,25 @@ class LoginApp(App):
         return super(LoginApp, self).get_application_config('%s/config.cfg' % conf_directory)
 
 class CreateAccount(Screen):
-    pass
+    def create_account(self, username, password):
+        accounts = self.load_accounts()
+        if username in accounts:
+            print("Account already exists!")
+        else:
+            accounts[username] = password
+            self.save_accounts(accounts)
+            print(f"Account for {username} created successfully!")
+
+    def load_accounts(self):
+        try:
+            with open('accounts.json', 'r') as file:
+                return json.load(file)
+        except FileNotFoundError:
+            return {}
+
+    def save_accounts(self, accounts):
+        with open('accounts.json', 'w') as file:
+            json.dump(accounts, file, indent=4)
 
 TILE_SIZE = 100
 GRID_SIZE = 4

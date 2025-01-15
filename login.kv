@@ -149,14 +149,14 @@ ScreenManager:
                 valign: "middle"
 
             Button:
-                text: "Go to Login"
+                text: "Create account"
                 font_size: 32
                 font_name: 'fonts/font_3.ttf'
                 size_hint: None, None
                 width: "200dp"
                 height: "40dp"
                 pos_hint: {"center_x": 0.5, "y": 0.1}
-                on_press: root.manager.current = 'login'
+                on_press: root.create_account(username.text, password.text)
 
     Label:
         text: 'Sign Up'

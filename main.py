@@ -15,6 +15,40 @@ import numpy as np
 
 Window.size = (360, 640)
 
+TILE_SIZE = 100
+GRID_SIZE = 4
+INITIAL_TILES = 2
+
+TILE_COLORS = {
+    0: (175/255, 242/255, 213/255, 1),
+    2: (175/255, 237/255, 242/255, 1),
+    4: (175/255, 204/255, 242/255, 1),
+    8: (180/255, 175/255, 242/255, 1),
+    16: (213/255, 175/255, 242/255, 1),
+    32: (242/255, 175/255, 237/255, 1),
+    64: (175/255, 242/255, 213/255, 1),
+    128: (175/255, 237/255, 242/255, 1),
+    256: (175/255, 204/255, 242/255, 1),
+    512: (180/255, 175/255, 242/255, 1),
+    1024: (213/255, 175/255, 242/255, 1),
+    2048: (242/255, 175/255, 237/255, 1)
+}
+
+TEXT_COLORS = {
+    0: (0, 0, 0, 1),
+    2: (0, 0, 0, 1),
+    4: (0, 0, 0, 1),
+    8: (0, 0, 0, 1),
+    16: (0, 0, 0, 1),
+    32: (0, 0, 0, 1),
+    64: (0, 0, 0, 1),
+    128: (0, 0, 0, 1),
+    256: (0, 0, 0, 1),
+    512: (0, 0, 0, 1),
+    1024: (0, 0, 0, 1),
+    2048: (0, 0, 0, 1),
+}
+
 class Login(Screen):
     def load_accounts(self):
         try:
@@ -53,7 +87,6 @@ class LoginApp(App):
         manager.add_widget(CreateAccount(name='create_account'))
         manager.add_widget(Menu(name='menu'))
         manager.add_widget(Game(name='game'))
-        manager.add_widget(Login(name='login'))
         manager.add_widget(GameResume(name='resume'))
 
         return manager
@@ -89,40 +122,6 @@ class CreateAccount(Screen):
     def save_accounts(self, accounts):
         with open('accounts.json', 'w') as file:
             json.dump(accounts, file, indent=4)
-
-TILE_SIZE = 100
-GRID_SIZE = 4
-INITIAL_TILES = 2
-
-TILE_COLORS = {
-    0: (175/255, 242/255, 213/255, 1),
-    2: (175/255, 237/255, 242/255, 1),
-    4: (175/255, 204/255, 242/255, 1),
-    8: (180/255, 175/255, 242/255, 1),
-    16: (213/255, 175/255, 242/255, 1),
-    32: (242/255, 175/255, 237/255, 1),
-    64: (175/255, 242/255, 213/255, 1),
-    128: (175/255, 237/255, 242/255, 1),
-    256: (175/255, 204/255, 242/255, 1),
-    512: (180/255, 175/255, 242/255, 1),
-    1024: (213/255, 175/255, 242/255, 1),
-    2048: (242/255, 175/255, 237/255, 1)
-}
-
-TEXT_COLORS = {
-    0: (0, 0, 0, 1),
-    2: (0, 0, 0, 1),
-    4: (0, 0, 0, 1),
-    8: (0, 0, 0, 1),
-    16: (0, 0, 0, 1),
-    32: (0, 0, 0, 1),
-    64: (0, 0, 0, 1),
-    128: (0, 0, 0, 1),
-    256: (0, 0, 0, 1),
-    512: (0, 0, 0, 1),
-    1024: (0, 0, 0, 1),
-    2048: (0, 0, 0, 1),
-}
 
 class Tile(Button):
     def __init__(self, value=0, **kwargs):
@@ -178,6 +177,17 @@ class Game(Screen):
         )
         self.quit_button.bind(on_press=self.quit_game)
         self.top_bar.add_widget(self.quit_button)
+
+        self.menu_button = Button(
+            text="Menu",
+            font_size=20,
+            font_name="fonts/font_3.ttf",
+            background_color=(242 / 255, 175 / 255, 175 / 255, 1),
+            size_hint_x=None,
+            width=100
+        )
+        self.menu_button.bind(on_press=self.save_game)
+        self.top_bar.add_widget(self.menu_button)
 
         self.tiles = [[Tile(value=0) for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)]
         for row in self.tiles:
@@ -325,38 +335,45 @@ class Game(Screen):
         self.update_tiles()
         self.check_game_state()
 
-    # def save_game(self, instance):
-    #     game_data = {
-    #         'board': self.board.tolist(),
-    #         'score': self.score
-    #     }
-    #     with open('save.json', 'w') as f:
-    #         json.dump(game_data, f)
-    #     print("Game saved!")
+    def save_game(self, event=None):
+        game_data = {
+            'board': [[int(cell) if isinstance(cell, np.int64) else cell for cell in row] for row in
+                      self.board.tolist()],
+            'score': int(self.score)
+        }
 
-    # def load_game(self, instance):
-    #     try:
-    #         with open('save.json', 'r') as f:
-    #             game_data = json.load(f)
-    #         self.board = np.array(game_data['board'])
-    #         self.score = game_data['score']
-    #         self.update_tiles()
-    #         print("Game loaded!")
-    #     except FileNotFoundError:
-    #         print("No saved game found.")
+        with open('save.json', 'w') as f:
+            json.dump(game_data, f)
 
-    def restart_game(self, instance):
+        self.manager.current = 'menu'
+
+    def load_game(self):
+        try:
+            with open('save.json', 'r') as f:
+                game_data = json.load(f)
+            self.board = np.array(game_data['board'])
+            self.score = game_data['score']
+            self.update_tiles()
+        except FileNotFoundError:
+            print("No saved game found.")
+        self.update_tiles()
+
+    def restart_game(self):
         self.init_board()
         print("Game restarted!")
 
-    def quit_game(self, instance):
+    def quit_game(self):
         App.get_running_app().stop()
 
 class ScreenManagement(ScreenManager):
     pass
 
 class Menu(Screen):
-    pass
+    def load_game(self):
+        app = App.get_running_app()
+        game_screen = app.root.get_screen('game')
+        game_screen.load_game()
+        self.manager.current = 'game'
 
 class GameResume(Screen):
     pass

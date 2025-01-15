@@ -158,6 +158,16 @@ ScreenManager:
                 pos_hint: {"center_x": 0.5, "y": 0.1}
                 on_press: root.create_account(username.text, password.text)
 
+    Button:
+        text: "Back to login"
+        font_size: 32
+        font_name: 'fonts/font_3.ttf'
+        size_hint: None, None
+        width: "200dp"
+        height: "40dp"
+        pos_hint: {"center_x": 0.5, "y": 0.05}
+        on_press: root.manager.current = 'login'
+
     Label:
         text: 'Sign Up'
         font_size: 64
@@ -238,7 +248,7 @@ ScreenManager:
                 width: "200dp"
                 height: "40dp"
                 pos_hint: {"center_x": 0.5}
-                #on_press: root.manager.current = 'login'
+                on_press: root.quit_game()
 
         Label:
             text: '[color=F2AFED]2[/color]0[color=AFCCF2]4[/color][color=B4AFF2]8[/color]'

@@ -1,5 +1,8 @@
 import random
 import json
+
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.popup import Popup
 from pynput import keyboard
 from kivy.app import App
 from kivy.graphics import Color, Rectangle
@@ -50,6 +53,22 @@ TEXT_COLORS = {
 }
 
 class Login(Screen):
+    def show_popup(self, message):
+        layout = FloatLayout()
+        content = Label(text=message, font_size=24, font_name='fonts/font_3.ttf',
+                        size_hint=(None, None), size=(300, 100), pos_hint={"center_x": 0.5, "center_y": 0.6})
+
+        close_button = Button(text="Close", size_hint=(None, None), size=(200, 50),
+                              pos_hint={"center_x": 0.5, "y": 0.05},
+                              font_name='fonts/font_3.ttf')
+
+        close_button.bind(on_press=lambda instance: popup.dismiss())
+        layout.add_widget(content)
+        layout.add_widget(close_button)
+        popup = Popup(title='Message', content=layout, size_hint=(None, None), size=(600, 250))
+        popup.title_font = 'fonts/font_3.ttf'
+        popup.open()
+
     def load_accounts(self):
         try:
             with open('accounts.json', 'r') as file:
@@ -71,7 +90,7 @@ class Login(Screen):
             self.manager.transition.direction = 'left'
             self.manager.current = 'menu'
         else:
-            print("Username sau parolă greșită!")
+            self.show_popup("Wrong username or password!")
 
     def go_to_create_account(self):
         self.manager.transition = SlideTransition(direction='left')
@@ -103,14 +122,30 @@ class LoginApp(App):
         return super(LoginApp, self).get_application_config('%s/config.cfg' % conf_directory)
 
 class CreateAccount(Screen):
+    def show_popup(self, message):
+        layout = FloatLayout()
+        content = Label(text=message, font_size=24, font_name='fonts/font_3.ttf',
+                        size_hint=(None, None), size=(300, 100), pos_hint={"center_x": 0.5, "center_y": 0.6})
+
+        close_button = Button(text="Close", size_hint=(None, None), size=(200, 50),
+                              pos_hint={"center_x": 0.5, "y": 0.05},
+                              font_name='fonts/font_3.ttf')
+
+        close_button.bind(on_press=lambda instance: popup.dismiss())
+        layout.add_widget(content)
+        layout.add_widget(close_button)
+        popup = Popup(title='Message', content=layout, size_hint=(None, None), size=(600, 250))
+        popup.title_font = 'fonts/font_3.ttf'
+        popup.open()
+
     def create_account(self, username, password):
         accounts = self.load_accounts()
         if username in accounts:
-            print("Account already exists!")
+            self.show_popup("Account already exists!")
         else:
             accounts[username] = password
             self.save_accounts(accounts)
-            print(f"Account for {username} created successfully!")
+            self.show_popup(f"Account created!")
 
     def load_accounts(self):
         try:
@@ -288,12 +323,28 @@ class Game(Screen):
                     return 'GAME NOT OVER'
         return 'LOST'
 
+    def show_popup(self, message):
+        layout = FloatLayout()
+        content = Label(text=message, font_size=24, font_name='fonts/font_3.ttf',
+                        size_hint=(None, None), size=(300, 100), pos_hint={"center_x": 0.5, "center_y": 0.6})
+
+        close_button = Button(text="Close", size_hint=(None, None), size=(200, 50),
+                              pos_hint={"center_x": 0.5, "y": 0.05},
+                              font_name='fonts/font_3.ttf')
+
+        close_button.bind(on_press=lambda instance: popup.dismiss())
+        layout.add_widget(content)
+        layout.add_widget(close_button)
+        popup = Popup(title='Message', content=layout, size_hint=(None, None), size=(600, 250))
+        popup.title_font = 'fonts/font_3.ttf'
+        popup.open()
+
     def check_game_state(self):
         result = self.game_state()
         if result == 'WON':
-            print("Congratulations! You won!")
+            self.show_popup("You won!")
         elif result == 'LOST':
-            print("Game Over!")
+            self.show_popup("Game over!")
 
     def left(self, instance=None, keycode=None):
         self.compress()
@@ -355,12 +406,12 @@ class Game(Screen):
             self.score = game_data['score']
             self.update_tiles()
         except FileNotFoundError:
-            print("No saved game found.")
+            self.show_popup("No saved game found.")
         self.update_tiles()
 
     def restart_game(self):
         self.init_board()
-        print("Game restarted!")
+        self.show_popup("Game restarted!")
 
     def quit_game(self):
         App.get_running_app().stop()
@@ -374,6 +425,9 @@ class Menu(Screen):
         game_screen = app.root.get_screen('game')
         game_screen.load_game()
         self.manager.current = 'game'
+
+    def quit_game(self):
+        App.get_running_app().stop()
 
 class GameResume(Screen):
     pass

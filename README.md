@@ -8,7 +8,7 @@ integrated features such as undo and resume
 functionalities and game-over conditions.
 <br> </br>
 <p align="center">
-    <img width="900" height="500" src="https://github.com/andreeaa-10/2048-python/blob/main/pictures/img.png">
+    <img width="300" height="500" src="https://github.com/andreeaa-10/2048-python/blob/main/pictures/img.png">
 </p>
 <h3>
     Game rules

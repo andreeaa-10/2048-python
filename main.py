@@ -1,5 +1,5 @@
 import random
-
+import json
 from pynput import keyboard
 from kivy.app import App
 from kivy.graphics import Color, Rectangle
@@ -16,19 +16,42 @@ import numpy as np
 Window.size = (360, 640)
 
 class Login(Screen):
+    def load_accounts(self):
+        try:
+            with open('accounts.json', 'r') as file:
+                return json.load(file)
+        except FileNotFoundError:
+            return {}
+
+    def save_accounts(accounts):
+        with open('accounts.json', 'w') as file:
+            json.dump(accounts, file, indent=4)
+
     def do_login(self, loginText, passwordText):
         app = App.get_running_app()
-
         app.username = loginText
         app.password = passwordText
 
-        if app.username == "andreea" and app.password == "zani":
+        accounts = self.load_accounts()
+        if accounts.get(app.username) == app.password:
             self.manager.transition.direction = 'left'
             self.manager.current = 'menu'
+        else:
+            print("Username sau parolă greșită!")
 
-    def go_to_create_account(self):
+    def go_to_create_account(self, username, password):
         self.manager.transition = SlideTransition(direction='left')
         self.manager.current = 'create_account'
+        accounts = self.load_accounts()
+
+        if username in accounts:
+            print("Username-ul există deja!")
+        else:
+            accounts[username] = password
+            self.save_accounts(accounts)
+            print("Cont creat cu succes!")
+            self.manager.transition = SlideTransition(direction='right')
+            self.manager.current
 
 class LoginApp(App):
     username = StringProperty(None)

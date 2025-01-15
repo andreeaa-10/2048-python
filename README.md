@@ -10,6 +10,11 @@ functionalities and game-over conditions.
 <p align="center">
     <img width="300" height="500" src="https://github.com/andreeaa-10/2048-python/blob/main/pictures/img.png">
 </p>
+
+<p align="center">
+    <img width="300" height="500" src="https://github.com/andreeaa-10/2048-python/blob/main/pictures/img_1.png">
+</p>
+
 <h3>
     Game rules
 </h3>

@@ -16,10 +16,8 @@ Am dezvoltat un joc captivant 2048 în Python, utilizând Kivy pentru a implemen
 </p>
 
 <h3>
-    Game rules
+    Regulile jocului
 </h3>
-2048 is played on a 4×4 grid featuring numbered tiles that move smoothly when directed by the four arrow keys. Each time the tiles are shifted, a new tile appears randomly in one of the empty spaces
-on the board. Tiles move as far as they can in the chosen direction, stopping only when they collide with another tile or reach the edge of the grid. If two tiles with the same number collide during
-the move, they merge into a single tile with a value equal to the sum of the two. This merged tile cannot combine with any other tile in the same move. I have implemented <b>specific features</b> in
-the game, such as a <b>resume</b> function that allows the player to continue from where they left off, and an <b>automatic</b> move system that activates after a period of inactivity, selecting the
-best possible move. The game is won when a tile with the value of 2048 is created. You lose when no more valid moves are possible, meaning no tiles can be combined or moved.
+2048 se joacă pe o grilă de 4×4, care conține piese numerotate ce se mișcă fluid atunci când sunt direcționate cu ajutorul săgeților. De fiecare dată când piesele sunt mutate, o piesă nouă apare aleatoriu într-unul dintre spațiile libere de pe tablă. Piesele se deplasează cât de mult posibil în direcția aleasă, oprindu-se doar atunci când se ciocnesc cu o altă piesă sau ajung la marginea grilei. Dacă două piese cu aceeași valoare se ciocnesc în timpul unei mișcări, acestea se combină într-o singură piesă cu o valoare egală cu suma celor două. Această piesă combinată nu poate fi combinată cu o altă piesă în aceeași mișcare.
+
+Am implementat caracteristici specifice în joc, cum ar fi o funcție de reluare care permite jucătorului să continue de unde a rămas și un sistem de mișcare automată care se activează după o perioadă de inactivitate, selectând cea mai bună mișcare posibilă. Jocul este câștigat atunci când se creează o piesă cu valoarea 2048. Pierzi atunci când nu mai sunt posibile mișcări valide, adică atunci când nicio piesă nu poate fi combinată sau mutată.

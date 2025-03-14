@@ -22,4 +22,4 @@ If two tiles with the same value collide during a move, they merge into a single
     <img width="300" height="500" src="https://github.com/andreeaa-10/2048-python/blob/main/pictures/img_2.png">
 </p>
 
-Jocul este câștigat atunci când se creează o piesă cu valoarea 2048. Pierzi atunci când nu mai sunt posibile mișcări valide, adică atunci când nicio piesă nu poate fi combinată sau mutată.
+The game is won when a tile with a value of 2048 is created. You lose when no valid moves are possible, meaning no tiles can be merged or moved.

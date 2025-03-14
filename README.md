@@ -1,7 +1,7 @@
 <h1>
     2048
 </h1>
-Am dezvoltat un joc captivant 2048 în Python, utilizând Kivy pentru a implementa o interfață grafică prietenoasă care îmbunătățește experiența jucătorului. Am creat algoritmi pentru a gestiona mecanica jocului, inclusiv combinarea pieselor și calcularea scorului, asigurând o experiență de joc receptivă și provocatoare. Am integrat funcționalități precum "undo" (revenire), "resume" (reluare) și condiții de terminare a jocului.
+I developed an engaging 2048 game in Python, using Kivy to implement a user-friendly graphical interface that enhances the player experience. I designed algorithms to handle the game's mechanics, including tile merging and score calculation, ensuring a responsive and challenging gameplay experience. Additionally, I integrated features such as undo, resume, and game-over conditions to improve playability and user interaction.
 <br> </br>
 <p align="center">
     <img width="300" height="500" src="https://github.com/andreeaa-10/2048-python/blob/main/pictures/img.png">
@@ -12,9 +12,11 @@ Am dezvoltat un joc captivant 2048 în Python, utilizând Kivy pentru a implemen
 </p>
 
 <h3>
-    Regulile jocului
+    Game rules
 </h3>
-2048 se joacă pe o grilă de 4×4, care conține piese numerotate ce se mișcă fluid atunci când sunt direcționate cu ajutorul săgeților. De fiecare dată când piesele sunt mutate, o piesă nouă apare aleatoriu într-unul dintre spațiile libere de pe tablă. Piesele se deplasează cât de mult posibil în direcția aleasă, oprindu-se doar atunci când se ciocnesc cu o altă piesă sau ajung la marginea grilei. Dacă două piese cu aceeași valoare se ciocnesc în timpul unei mișcări, acestea se combină într-o singură piesă cu o valoare egală cu suma celor două. Această piesă combinată nu poate fi combinată cu o altă piesă în aceeași mișcare.
+2048 is played on a 4×4 grid, containing numbered tiles that move smoothly when directed using the arrow keys. Each time the tiles are moved, a new tile randomly appears in one of the empty spaces on the board. The tiles slide as far as possible in the chosen direction, stopping only when they collide with another tile or reach the edge of the grid.
+
+If two tiles with the same value collide during a move, they merge into a single tile with a value equal to the sum of the two. This merged tile cannot combine with another tile in the same move.
 <br> </br>
 <p align="center">
     <img width="300" height="500" src="https://github.com/andreeaa-10/2048-python/blob/main/pictures/img_2.png">
